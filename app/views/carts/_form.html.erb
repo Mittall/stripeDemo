@@ -1,0 +1,39 @@
+<%= form_for(@cart) do |f| %>
+  <% if @cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+
+      <ul>
+      <% @cart.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">
+    <%#= f.label :product_id %><br>
+    <%#= f.number_field :product_id %>
+  </div>-->
+
+  <div class="field">
+    <%= f.label :qty %><br>
+    <%= f.number_field :qty %>
+  </div>
+
+  <!--<div class="field">
+    <%#= f.label :payment_type %><br>
+    <%#= f.text_field :payment_type %>
+  </div>-->
+
+  <div class="field">
+    <%= f.radio_button :payment_type, 'paypal', :checked => true %>
+    <%= f.label :payment_type_paypal, 'Paypal' %>
+    <%= f.radio_button :payment_type, 'stripe' %>
+    <%= f.label :payment_type_stripe, 'Stripe' %>
+  </div>
+    
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
